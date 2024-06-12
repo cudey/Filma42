@@ -20,10 +20,19 @@ if (isset($_SESSION["user_id"])) {
 <html lang="en">
 
 <head>
+  <?php
+  require_once 'contentdatabase/connection.php';
+  if (isset($_GET['ID'])) {
+    $ID = mysqli_real_escape_string($mysqli, $_GET['ID']);
+    $moviesql = "SELECT * FROM movies WHERE id = '$ID'";
+    $movieresult = mysqli_query($mysqli, $moviesql) or die("Bad Query: $moviesql");
+    $row = mysqli_fetch_array($movieresult);
+  }
+  ?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filma42 - Free Guy 2021</title>
+  <title>Filma42 - <?php echo $row['title'] ?></title>
 
   <link rel="stylesheet" href="./assets/css/style.css">
 
@@ -145,9 +154,21 @@ if (isset($_SESSION["user_id"])) {
             ?>
             <img src="./assets/images/<?php echo $row['img']; ?>">
 
-            <button class="play-btn">
+            <button id="popup" class="play-btn">
               <ion-icon name="play-circle-outline"></ion-icon>
             </button>
+            <div id="videoPopup1" class="popup">
+              <div class="popup-content">
+                <span class="close" id="close">×</span>
+                <iframe
+                  width="1240"
+                  height="620"
+                  src="<?php echo $row['trailer'] ?>"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
 
           </figure>
 

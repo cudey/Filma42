@@ -126,7 +126,7 @@ if (isset($_SESSION["user_id"])) {
       <!--HERO-->
 
       <section class="hero">
-      <video autoplay muted loop class="fade-container" id="myVideo">
+      <video autoplay muted loop id="myVideo">
           <source src="assets/images/bestmovies.mp4" type="video/mp4">
         </video>
         <div class="container">
@@ -1002,7 +1002,7 @@ if (isset($_SESSION["user_id"])) {
                 </li>
 
                 <li>
-                  <a href="#" class="social-link">
+                  <a href="interaction.html" class="social-link" title="You found me!">
                     <ion-icon name="logo-linkedin"></ion-icon>
                   </a>
                 </li>
